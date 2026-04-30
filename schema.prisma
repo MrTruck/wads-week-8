@@ -1,0 +1,18 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Todo {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  task      String
+  completed Boolean  @default(false)
+  userId    String   // The Firebase UID
+}
